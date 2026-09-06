@@ -1,5 +1,6 @@
 import threading
 import time
+from datetime import datetime
 
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal, Vertical
@@ -130,8 +131,26 @@ class MonitorApp(App):
         background: transparent;
         color: #22C55E;
         padding: 1 2;
-        text-style: bold;
         border-bottom: solid #22C55E;
+    }
+
+    #brand {
+        color: #22C55E;
+        text-style: bold;
+        width: auto;
+    }
+
+    #topbar-meta {
+        color: #F8FAFC;
+        text-style: bold;
+        width: 1fr;
+    }
+
+    #clock {
+        color: #22C55E;
+        text-style: bold;
+        dock: right;
+        width: auto;
     }
 
     #main {
@@ -254,7 +273,12 @@ class MonitorApp(App):
 
     def compose(self) -> ComposeResult:
         yield Vertical(
-            Static("◤ MonitorAgent   信息监控 Agent  ·  Enter 提交  ·  Ctrl+Q 退出", id="topbar"),
+            Horizontal(
+                Static("MonitorAgent", id="brand"),
+                Static("信息监控 Agent  ·  Enter 提交  ·  Ctrl+Q 退出", id="topbar-meta"),
+                Static("", id="clock"),
+                id="topbar",
+            ),
             Horizontal(
                 Vertical(
                     Static("监控主题", id="topic-title"),
@@ -283,6 +307,11 @@ class MonitorApp(App):
         self._status_spinner_idx = 0
         self._status_timer = None
         self.query_one("#topic", Input).focus()
+        self._clock_timer = self.set_interval(1.0, self._update_clock)
+        self._update_clock()
+
+    def _update_clock(self):
+        self.query_one("#clock", Static).update(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     def _status_line(self):
         if self._status_timer is not None:
