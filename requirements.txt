@@ -9,4 +9,5 @@ rapidfuzz
 textual
 fastapi
 uvicorn
+websockets
 pytest
