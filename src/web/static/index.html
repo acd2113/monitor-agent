@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MonitorAgent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>MonitorAgent</span>
+    </div>
+    <div class="topbar-meta">信息监控工作台</div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>监控主题</h2>
+        <div id="current-topic" class="current-topic">等待输入</div>
+      </section>
+
+      <section class="panel">
+        <h2>运行状态</h2>
+        <div id="status" class="status">等待输入主题</div>
+      </section>
+
+      <section class="panel">
+        <h2>规划信息</h2>
+        <div id="plan-info" class="plan-info">暂无</div>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div id="channel-grid" class="channel-grid"></div>
+
+      <section id="results-panel" class="panel results-panel">
+        <div class="panel-head">
+          <h2>时间线</h2>
+          <span id="result-count" class="count">0 条</span>
+        </div>
+        <div class="table-wrap">
+          <table id="results">
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>来源</th>
+                <th>标题</th>
+                <th>摘要</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <form id="monitor-form" class="command-bar">
+    <input id="topic-input" type="text" placeholder="输入监控主题，例如：监控 OpenAI 近期的重要产品更新" autocomplete="off" />
+  </form>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

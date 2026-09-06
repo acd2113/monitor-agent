@@ -1,0 +1,12 @@
+openai
+python-dotenv
+tavily-python
+feedparser
+httpx
+trafilatura
+beautifulsoup4
+rapidfuzz
+textual
+fastapi
+uvicorn
+pytest
